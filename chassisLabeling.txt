@@ -72,3 +72,17 @@
 357000,R1,12,CenterRearAxle3
 357000,R1,11,FuelTankBrkt
 357005,R1,11,BackRearAxle
+357000,R1,6,BackRearAxle
+357000,R1,7,FrontRearAxle
+377798,R1,6,BackRearAxle
+377798,R1,7,FrontRearAxle
+377798,R1,3,BackRearAxle
+377798,R1,21,FuelTankBrkt
+377799,R1,6,BackRearAxle
+377798,R1,6,BackRearAxle
+377798,R1,3,CenterRearAxle3
+377798,R1,6,BackRearAxle
+377798,R1,7,FrontRearAxle
+377798,R1,11,FuelTankBrkt
+377798,R1,13,FuelTankBrkt
+377798,R1,21,FrontRearAxle3

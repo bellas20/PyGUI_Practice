@@ -129,12 +129,13 @@ def LoadImage():
     load = Image.open(jpgList[gCurrentFileIndex])
     width,height = load.size
     aspRatio=width/height
-    print(width,height)
+    print(width,height, aspRatio)
     numSect = int(width/sectWidth)
     print(numSect)
     newSectWidth = 1000//numSect
     newImgWidth = newSectWidth*numSect
-    newImgHeight = newImgWidth//int(aspRatio)
+    newImgHeight = int(newImgWidth/aspRatio)
+    print(newImgWidth,newImgHeight)
     resizedload = load.resize((newImgWidth,newImgHeight),Image.ANTIALIAS)
     render = ImageTk.PhotoImage(resizedload)
     LoadImage.img = Label(root, image=render)
@@ -150,7 +151,9 @@ def LoadImage():
 
 root = Tk()
 root.title("Chassis Object Detection Labeling")
-screenSizeStr = str(1150) + "x" + str(600)
+screenWidth = 1175
+screenHeight = 600
+screenSizeStr = str(screenWidth) + "x" + str(screenHeight)
 root.geometry(screenSizeStr)
 
 #Initial Image Load
@@ -166,48 +169,48 @@ Lbox.insert(4, "CenterRearAxle3")
 Lbox.insert(5, "FrontRearAxle3")
 Lbox.insert(6, "FuelTankBrkt")
 
-Lbox.place(x=newImgWidth,y=0)
+Lbox.place(x=newImgWidth+15,y=0)
 Lbox.bind('<<ListboxSelect>>',LboxSelect)
 
 #Chassis Number Text Box
-chsTextBox=Text(root, height=1, width=18)
-chsTextBox.place(x=newImgWidth,y=newImgHeight//2)
+chsTextBox=Text(root, height=1, width=17)
+chsTextBox.place(x=newImgWidth+15,y=screenHeight//2-90)
 messInit='Image: '+str(gChassisNum)+'\n'
 chsTextBox.insert(1.0,messInit)
 
 #Section Number Text Box
-outbox=Text(root, height=1, width=18)
-outbox.place(x=newImgWidth,y=newImgHeight//2+35)
+outbox=Text(root, height=1, width=17)
+outbox.place(x=newImgWidth+15,y=screenHeight//2-65)
 
 #Label Text Box
-labelOutBox=Text(root, height=1, width=18)
-labelOutBox.place(x=newImgWidth,y=newImgHeight//2+70)
+labelOutBox=Text(root, height=1, width=17)
+labelOutBox.place(x=newImgWidth+15,y=screenHeight//2-40)
 
 #Message Text Box
-messbox=Text(root, height=2,width=18)
-messbox.place(x=newImgWidth,y=newImgHeight*3//4)
+messbox=Text(root, height=2,width=17)
+messbox.place(x=newImgWidth+15,y=screenHeight//2-15)
 #messbox.place(x=newImgWidth//2,y=40)
 
 #Define and Place Save button for text file or database based on Output Mode
 #Database output not developed yet
 if (gOutputMode==1):
     saveButton = tk.Button(text="Save to Database", activebackground="yellow", command = SavetoDB)
-    saveButton.place(x=newImgWidth+15,y=newImgHeight//2-30)
+    saveButton.place(x=newImgWidth+15,y=screenHeight//2-120)
 else:
     saveButton = tk.Button(text="Save to Text File", activebackground="yellow", command = SavetoDB)
-    saveButton.place(x=newImgWidth+15,y=newImgHeight//2-30)
+    saveButton.place(x=newImgWidth+15,y=screenHeight//2-120)
     #closeFileButton = tk.Button(text="Close Text File", activebackground="yellow", command = CloseFile)
     #closeFileButton.place(x=newImgWidth+15,y=newImgHeight+13)    
 
 #Define and Place Buttons
 clearButton = tk.Button(text="Clear Data", activebackground="yellow", command = ClearTextBox)
-clearButton.place(x=newImgWidth+15,y=newImgHeight-15)
+clearButton.place(x=newImgWidth+15,y=screenHeight//2+25)
 
 nextFileButton = tk.Button(text="Next", activebackground="yellow", command = NextImg)
-nextFileButton.place(x=newImgWidth+110,y=newImgHeight-45)
+nextFileButton.place(x=newImgWidth+110,y=screenHeight//2+25)
 
 prevFileButton = tk.Button(text="Prev", activebackground="yellow", command = PrevImg)
-prevFileButton.place(x=newImgWidth+110,y=newImgHeight-15)
+prevFileButton.place(x=newImgWidth+110,y=screenHeight//2+70)
 
 #Close the output text file upon exiting application
 atexit.register(CloseFile)
