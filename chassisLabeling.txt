@@ -86,3 +86,4 @@
 377798,R1,11,FuelTankBrkt
 377798,R1,13,FuelTankBrkt
 377798,R1,21,FrontRearAxle3
+377807,R1,2,BackRearAxle
